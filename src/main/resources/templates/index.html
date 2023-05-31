@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="main_layout.html">
+    <div layout:fragment="siteContent">
+        <table class="table table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>SURNAME</th>
+                <th>EXAM</th>
+                <th>MARK</th>
+                <th style="width: 10%">DETAILS</th>
+            </tr>
+            </thead>
+            <tbody>
+<!--            <tr th:each="muz : ${muzikalar}" th:style="${muz.duration>=180?'color:green':'color:red'}">-->
+<!--            <tr th:each="muz : ${muzikalar}" th:class="${muz.duration>=180?'text-primary':'text-secondary'}">-->
+<!--            <tr th:each="stud : ${studentter}" th:class="${muz.duration>=180?(muz.duration<=200?'text-primary':'text-danger'):'text-secondary'}">-->
+                <tr th:each="stud : ${studentter}" th:class="${stud.mark=='F'?'text-danger' : ''}">
+                <td th:text="${stud.id}"></td>
+                <td th:text="${stud.name}"></td>
+                <td th:text="${stud.surname}"></td>
+                <td th:text="${stud.exam}"></td>
+                <td th:text="${stud.mark}"></td>
+                <td>
+                    <a th:href="@{'/details/' + ${stud.id}}" class="btn btn-primary btn-sm">DETAILS</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</html>
